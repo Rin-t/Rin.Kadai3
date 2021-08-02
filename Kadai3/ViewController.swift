@@ -17,20 +17,12 @@ final class ViewController: UIViewController {
     @IBOutlet private weak var resultCalculationLabel: UILabel!
 
     @IBAction private func didTapButton(_ sender: UIButton) {
-        let num1 = matchSign(isOn: switch1.isOn,
-                             num: Double(textField1.text ?? "") ?? 0)
-        let num2 = matchSign(isOn: switch2.isOn,
-                             num: Double(textField2.text ?? "") ?? 0)
-        num1Label.text = String(num1)
-        num2Label.text = String(num2)
-        resultCalculationLabel.text = String(num1 + num2)
-    }
-
-    private func matchSign(isOn: Bool, num: Double) -> Double {
-        if isOn {
-            let num = -num
-            return num
-        }
-        return num
+        let num1 = Double(textField1.text ?? "") ?? 0
+        let num2 = Double(textField2.text ?? "") ?? 0
+        let matchedSignNum1 = switch1.isOn ? -num1 : num1
+        let matchedSignNum2 = switch2.isOn ? -num2 : num2
+        num1Label.text = String(matchedSignNum1)
+        num2Label.text = String(matchedSignNum2)
+        resultCalculationLabel.text = String(matchedSignNum1 + matchedSignNum2)
     }
 }
